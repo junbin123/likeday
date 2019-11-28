@@ -1,0 +1,57 @@
+.card {
+  width: 686rpx;
+  height: 64px;
+  background: #fff;
+  margin-bottom: 16px;
+  border-radius: 6rpx;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+}
+
+.card__left {
+  width: 470rpx;
+  height: 100%;
+  float: left;
+}
+
+.card__left__title {
+  margin-left: 14px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  height: 22px;
+  overflow: hidden;
+}
+
+.card__left__date {
+  margin-left: 14px;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #808080;
+}
+
+.card__right {
+  width: 216rpx;
+  height: 100%;
+  float: left;
+  text-align: center;
+  line-height: 64px;
+  color: #fff;
+  border-radius: 0rpx 6rpx 6rpx 0rpx;
+}
+
+.card__right image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 32rpx;
+}
+
+.card__right__day-count {
+  font-size: 36px;
+  font-family: "Klavika";
+}
+
+.card__right__day-unit {
+  margin-left: 4rpx;
+  font-size: 28rpx;
+}

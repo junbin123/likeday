@@ -1,0 +1,12 @@
+<import src="section/section-template.wxml" />
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset" report-submit='true'>
+    <template is="sectionTemplate" data="{{...form[0],title}}"></template>
+    <template is="sectionTemplate" data="{{...form[1],initTargetDate}}"></template>
+    <!-- <template is="sectionTemplate" data="{{...form[2],category}}"></template> -->
+    <!-- <view style="width:100%;height:16px;background:#ededed"></view> -->
+    <template is="sectionTemplate" data="{{...form[3],top}}"></template>
+    <template is="sectionTemplate" data="{{...form[4],repeat}}"></template>
+    <button form-type="submit" class="btn-submit">保存</button>
+  </form>
+</view>

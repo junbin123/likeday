@@ -1,0 +1,27 @@
+@import "section/section-template.wxss";
+
+.personal {
+  width: 750rpx;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-box {
+  width: 100px;
+  height: 100px;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  border: 15px solid #ededed;
+}
+
+.nickname {
+  font-size: 16px;
+}

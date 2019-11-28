@@ -1,0 +1,21 @@
+@import 'section/section-template.wxss';
+
+.container {
+  width: 100%;
+  font-size: 14px;
+}
+
+.btn-submit {
+  width: 670rpx;
+  height: 47px;
+  background: #455ac0;
+  color: #fff;
+  margin-top: 32rpx;
+}
+
+
+
+/* .reminder-tip {
+  color: #455ac0;
+  margin-right: 5rpx;
+} */

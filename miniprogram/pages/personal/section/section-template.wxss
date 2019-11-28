@@ -1,0 +1,50 @@
+.section {
+  width: 100%;
+  height: 56px;
+  background: #fff;
+}
+
+.section-btn {
+  width: 100%;
+  height: 56px;
+  opacity: 0;
+  position: absolute;
+}
+
+.section__left {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+}
+
+.section__left>image {
+  width: 24px;
+  height: 24px;
+  padding: 16px;
+}
+
+.section__middle {
+  width: 100%;
+  height: 55px;
+  border-bottom: 1px solid #d8d8d8;
+  float: left;
+}
+
+.section__middle > text {
+  font-size: 16px;
+  line-height: 56px;
+  padding-left: 56px;
+}
+
+.section__right {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 56px;
+}
+
+.section__right > image {
+  width: 24px;
+  height: 24px;
+  padding: 16px 8px;
+}
