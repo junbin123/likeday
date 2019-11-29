@@ -1,0 +1,17 @@
+<import src="section/section-template.wxml" />
+<!-- 个人信息 -->
+<view class="personal">
+  <view class="avatar-box">
+    <open-data type="userAvatarUrl" class="avatar"></open-data>
+    <view class='avatar' />
+  </view>
+  <open-data type="userNickName" lang="zh_CN" class="nickname" mode='aspectFit'></open-data>
+</view>
+<!-- 列表项 -->
+<block wx:for="{{section}}" wx:key="key2">
+  <template is="sectionTemplate" data="{{...item}}">
+  </template>
+</block>
+
+
+<tabbar></tabbar>
