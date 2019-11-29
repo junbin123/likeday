@@ -8,7 +8,8 @@
     <a href="https://github.com/junbin123/likeday"><img src="https://img.shields.io/badge/version-v1.2.0-blue"/></a>
     <a href="https://weibo.com/u/6208092799"><img src="https://img.shields.io/badge/weibo-%40%E4%BC%8D%E5%90%8C%E5%AD%A6%E5%91%80-red"/></a>
     <a href="https://github.com/junbin123/likeday"><img src="https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-abcmeego-green"/></a>
-
+</p>
+</p>
 ​    
 
 > LikeDay 小程序是我自学编程的一个小项目，旨在分享微信小程序的开发经验。
@@ -25,15 +26,16 @@
 
 ## 扫码体验
 
+<div align="center">
+<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9fb2981etj309k09k400.jpg"  width="200" height="200">
+<br>
+<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9fbf8a4vej30m90c8jut.jpg" >
+</div>
 
 
-<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9fb2981etj309k09k400.jpg" alt="开发工程师路线图" width="200" height="200">
 
 
 
-
-
-![分组 19](https://tva1.sinaimg.cn/large/006tNbRwgy1g9fbf8a4vej30m90c8jut.jpg)
 
 
 
