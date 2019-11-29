@@ -1,0 +1,15 @@
+<template name="sectionTemplate">
+  <view class="section">
+    <view class="section__left">
+      <image src="{{icon}}"></image>
+    </view>
+    <view class="section__middle" style="{{line?'':'border-bottom:#fff'}}">
+      <text>{{title}}</text>
+    </view>
+    <view class="section__right">
+      <image src="/images/icon/arrow.png"></image>
+    </view>
+    <button class="section-btn" open-type="{{openType}}" bindtap="{{bindtap}}">
+    </button>
+  </view>
+</template>

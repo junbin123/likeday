@@ -1,0 +1,22 @@
+<view class="content-box" style="height:{{canUseHeight}}px">
+  <view class="content-box-item">
+    <text class="text01">
+里程碑小程序是我的一个业余项目
+一个简单的倒数日小工具
+还在MVP阶段……
+有什么好的想法可以告诉我
+底部复制微信号，加我好友
+拉你进测试群🌝
+可以第一时间使用新功能
+</text>
+    <image src="/images/other/wechat.jpg" class="img01"></image>
+<text class="text02">（看清楚是这个微信☝）</text>
+  </view>
+  
+</view>
+
+<view class="btn-box">
+  <button class="btn-copy" bindtap="onCopyWechat">
+    复制微信号
+  </button>
+</view>

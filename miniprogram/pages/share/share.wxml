@@ -1,0 +1,15 @@
+<view class="share-img" style="height:{{imgBoxHeight}}px">
+  <canvas canvas-id="sharePoster" style="width:320px; height:414px;" />
+</view>
+
+<view class="btn-box" style="height:{{height}}">
+  <button class="btn btn-share" bindtap="onSaveImage">
+    <text>保存图片到相册</text>
+  </button>
+  <button class="btn btn-edit" bindtap="onEditCard">
+    <text>编辑</text>
+  </button>
+  <button class="btn btn-delete" bindtap="onDeleteCard">
+    <text>删除</text>
+  </button>
+</view>
