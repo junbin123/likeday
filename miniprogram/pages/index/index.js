@@ -9,7 +9,7 @@ Page({
     hasGetUserInfo: true,
     emptyState: true,
   },
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: '简单漂亮的倒数日工具',
       path: '/pages/index/index',
@@ -26,20 +26,20 @@ Page({
     // this.deleteMyData()
   },
 
-  onShow: function() {
+  onShow: function () {
     this.getTabBar().setData({
       selected: 0
     })
     this.requestEventData(); //请求event集合数据
   },
 
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.onShow();
     wx.stopPullDownRefresh()
   },
 
   // 点击卡片事件
-  onCardTap: function(event) {
+  onCardTap: function (event) {
     var title = event.currentTarget.dataset.title;
     var betweenDays = event.currentTarget.dataset.betweendays;
     var targetdate = event.currentTarget.dataset.targetdate;
@@ -48,29 +48,32 @@ Page({
     var url = '/pages/share/share?title=' + title + '&betweendays=' + betweenDays + '&targetdate=' + targetdate + '&week=' + week + '&id=' + id;
     wx.navigateTo({
       url: url,
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res)
       },
-      complete: function(res) {},
+      complete: function (res) { },
     })
   },
 
   // 请求event集合数据
   requestEventData() {
     db.collection('event').where({
-        deleteState: false
-      })
+      deleteState: false
+    })
       .get({
         success: (res) => {
           var cards = utils.setTopCard(res.data);
           // 重复事件，目标日更新
           cards = cards.map(item => {
-            item.targetDate = utils.resetTargetDate(item.initTargetDate, item.targetDate, parseInt(item.repeat))
+            item.newTargetDate = utils.resetTargetDate(item.targetDate, parseInt(item.repeat))
+            item.newWeek = utils.getWeekStr(item.newTargetDate)
+            item.betweenDays = utils.daysBetween(item.newTargetDate);
             return item
           })
+          console.log(cards)
           this.setData({
             cards: cards,
             canUseHeight: cards.length * 80 + 56,

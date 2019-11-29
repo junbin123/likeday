@@ -1,9 +1,9 @@
 <template name="cardTemplate">
-  <view class="card" catchtap="onCardTap" data-id="{{_id}}" data-title="{{title}}" data-betweendays="{{betweenDays}}" data-targetdate="{{targetDate}}" data-week="{{week}}">
+  <view class="card" catchtap="onCardTap" data-id="{{_id}}" data-title="{{title}}" data-betweendays="{{betweenDays}}" data-targetdate="{{newTargetDate}}" data-week="{{newWeek}}">
     <view class="card__left">
       <view class="card__left__title" wx:if="{{betweenDays>=0}}">{{title}}还有</view>
       <view class="card__left__title" wx:else>{{title}}已经过去</view>
-      <view class="card__left__date">目标日：{{targetDate}} {{week}}</view>
+      <view class="card__left__date">目标日：{{newTargetDate}} {{newWeek}}</view>
     </view>
     <!-- 条件渲染蓝色 -->
     <view class="card__right" style="background:#455AC0" wx:if="{{betweenDays>=0}}">

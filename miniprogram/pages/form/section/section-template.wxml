@@ -12,9 +12,9 @@
         <view class="section__content__left">{{title}}</view>
         <!-- 目标日 -->
         <block wx:if="{{type=='targetDate'}}">
-          <picker mode="date" bindchange="bindDateChange" name="targetDate" value="{{initTargetDate}}">
+          <picker mode="date" bindchange="bindDateChange" name="targetDate" value="{{targetDate}}">
             <view class="section__content__right">
-              <text wx:if="{{initTargetDate}}">{{initTargetDate}}</text>
+              <text wx:if="{{targetDate}}">{{targetDate}}</text>
               <text wx:else>点击设置</text>
               <image src="/images/icon/arrow.png" class="arrow-icon"></image>
             </view>
