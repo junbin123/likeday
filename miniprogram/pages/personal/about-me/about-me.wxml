@@ -1,4 +1,4 @@
-<view class="content-box" style="height:{{canUseHeight}}px">
+<view class="content-box" style="height:{{canUseHeight + 'px'}}">
   <view class="content-box-item">
     <text class="text01">
 里程碑小程序是我的一个业余项目
@@ -10,12 +10,12 @@
 可以第一时间使用新功能
 </text>
     <image src="/images/other/wechat.jpg" class="img01"></image>
-<text class="text02">（看清楚是这个微信☝）</text>
+    <text class="text02">（看清楚是这个微信☝）</text>
   </view>
-  
+
 </view>
 
-<view class="btn-box">
+<view class="btn-box" style="height:{{btnHeight + 'px'}}">
   <button class="btn-copy" bindtap="onCopyWechat">
     复制微信号
   </button>

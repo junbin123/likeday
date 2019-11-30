@@ -1,22 +1,20 @@
-// miniprogram/pages/personal/about-me/about-me.js
+const app = getApp()
 Page({
 
   data: {
     canUseHeight: 0,
-
+    btnHeight: app.globalData.isIPX ? 98 : 64,
   },
 
   onLoad: function(options) {
     // 获取不同设备高度，以实现垂直居中
-    var that = this;
     wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          canUseHeight: res.windowHeight - 64
+      success: (res) => {
+        this.setData({
+          canUseHeight: res.windowHeight - this.data.btnHeight
         })
       },
     })
-
   },
 
 

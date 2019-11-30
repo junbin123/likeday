@@ -4,14 +4,25 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"enhance": true
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"nodeModules": true
 	},
 	"appid": "wxe607a0b0977f67f3",
 	"projectname": "likeday",
-	"libVersion": "2.8.1",
+	"libVersion": "2.9.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -54,6 +65,13 @@
 					"id": -1,
 					"name": "pages/form/form",
 					"pathName": "pages/form/form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/personal/about-me/about-me",
+					"pathName": "pages/personal/about-me/about-me",
 					"scene": null
 				}
 			]

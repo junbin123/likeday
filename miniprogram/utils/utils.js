@@ -1,8 +1,8 @@
-
 /* 计算目标日与当前日期的天数差值（目标日在当前日期之前，返回值为负数），例如（当前日期：2019-11-29 ）：
 targetDate：2019-10-12 --> -48 */
 function daysBetween(targetDate) {
-  var currentTimestamp = new Date().getTime();
+  var currentDate = formatDate(new Date())
+  var currentTimestamp = new Date(currentDate).getTime();
   var targetTimestamp = new Date(targetDate).getTime();
   var currentDay = currentTimestamp / 1000 / 60 / 60 / 24;
   var targetDay = targetTimestamp / 1000 / 60 / 60 / 24;

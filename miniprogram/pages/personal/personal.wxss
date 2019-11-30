@@ -1,6 +1,13 @@
 @import "section/section-template.wxss";
 
-.personal {
+.getuserinfo-btn {
+  width: 100%;
+  height: 400rpx;
+  opacity: 0;
+  position: absolute;
+}
+
+.userinfo {
   width: 750rpx;
   height: 400rpx;
   display: flex;
@@ -9,19 +16,13 @@
   align-items: center;
 }
 
-.avatar-box {
-  width: 100px;
-  height: 100px;
-}
-
-.avatar {
+.userinfo__avatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  position: absolute;
-  border: 15px solid #ededed;
 }
 
-.nickname {
+.userinfo__nickname {
   font-size: 16px;
+  margin: 8px;
 }

@@ -24,8 +24,8 @@ Page({
       }
     ],
     hasGetUserInfo: false,
-    avatarUrl: "/images/icon/personal_icon/default_avatar.png",
-    nickName: "显示微信头像，点我登录"
+    avatarUrl: app.globalData.avatarUrl,
+    nickname: app.globalData.nickname
   },
 
 
@@ -33,29 +33,10 @@ Page({
     this.getTabBar().setData({
       selected: 2
     })
-
-    // 检查用户是否授权个人信息
-    wx.getUserInfo({
-      success: res => {
-        this.setData({
-          hasGetUserInfo: true,
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName
-        })
-        // app.globalData.hasGetUserInfo = true
-        console.log(res.userInfo)
-      },
-      fail: res => {
-        this.setData({
-          hasGetUserInfo: false,
-          avatarUrl: "/images/icon/personal_icon/default_avatar.png",
-          nickName: "显示微信头像，点我登录"
-        })
-        // app.globalData.hasGetUserInfo = false
-      }
+    this.setData({
+      avatarUrl: app.globalData.avatarUrl,
+      nickname: app.globalData.nickname
     })
-
-    
   },
 
   onShow: function() {
@@ -72,37 +53,20 @@ Page({
     }
   },
 
-  // 新用户信息添加到数据库user
-  onGetUserInfo: function(event) {
-    var userInfo = event.detail.userInfo;
-    db.collection("user").add({
-      data: {
-        avatarUrl: userInfo.avatarUrl,
-        city: userInfo.city,
-        country: userInfo.country,
-        gender: userInfo.gender,
-        language: userInfo.language,
-        nickName: userInfo.nickName,
-        province: userInfo.province,
-      },
-      success: function(res) {
-        console.log("用户信息获取成功" + res);
-
-      },
-      fail: function(err) {
-        console.log("用户信息获取失败" + err);
-      }
-    })
-    this.setData({
-      avatarUrl: userInfo.avatarUrl,
-      nickName: userInfo.nickName
-    })
-  },
-
   onAboutMe: function(event) {
     wx.navigateTo({
       url: '/pages/personal/about-me/about-me',
     })
   },
 
+  bindGetUserInfo: function(event) {
+    var avatarUrl = event.detail.userInfo.avatarUrl
+    var nickname = event.detail.userInfo.nickName
+    this.setData({
+      avatarUrl: avatarUrl,
+      nickname: nickname,
+    })
+    app.globalData.avatarUrl = avatarUrl
+    app.globalData.nickname = nickname
+  },
 })

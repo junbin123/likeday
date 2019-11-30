@@ -13,37 +13,37 @@ Page({
     top: false,
     repeat: 0,
     form: [{
-      type: 'title',
-      placeholder: '输入事件名，例如：她的生日',
-      iconUrl: '/images/icon/form_icon/title.png'
-    },
-    {
-      type: 'targetDate',
-      title: '目标日',
-      iconUrl: '/images/icon/form_icon/date.png'
-    },
-    {
-      type: 'category',
-      title: '分类',
-      iconUrl: '/images/icon/form_icon/category.png',
-      categoryArr: ['生活', '工作', '纪念日', '添加新分类'],
-    },
-    {
-      type: 'top',
-      title: '置顶',
-      iconUrl: '/images/icon/form_icon/top.png'
-    },
-    {
-      type: 'repeat',
-      title: '重复',
-      iconUrl: '/images/icon/form_icon/repeat.png',
-      repeatArr: ['不重复', '每天重复', '每周重复', '每月重复', '每年重复'],
-    }
+        type: 'title',
+        placeholder: '输入事件名，例如：她的生日',
+        iconUrl: '/images/icon/form_icon/title.png'
+      },
+      {
+        type: 'targetDate',
+        title: '目标日',
+        iconUrl: '/images/icon/form_icon/date.png'
+      },
+      {
+        type: 'category',
+        title: '分类',
+        iconUrl: '/images/icon/form_icon/category.png',
+        categoryArr: ['生活', '工作', '纪念日', '添加新分类'],
+      },
+      {
+        type: 'top',
+        title: '置顶',
+        iconUrl: '/images/icon/form_icon/top.png'
+      },
+      {
+        type: 'repeat',
+        title: '重复',
+        iconUrl: '/images/icon/form_icon/repeat.png',
+        repeatArr: ['不重复', '每天重复', '每周重复', '每月重复', '每年重复'],
+      }
     ]
 
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 编辑操作，根据事件id获取数据
     if (options.id) {
       var card = app.globalData.cards.find((item, index, arr) => {
@@ -60,10 +60,10 @@ Page({
   },
 
   // 事件名输入
-  bindTitleConfirm: function (event) { },
+  bindTitleConfirm: function(event) {},
 
   // 目标日输入
-  bindDateChange: function (event) {
+  bindDateChange: function(event) {
     this.setData({
       targetDate: event.detail.value
     })
@@ -77,14 +77,14 @@ Page({
   // },
 
   // 置顶设置
-  bindTopChange: function (event) {
+  bindTopChange: function(event) {
     this.setData({
       top: event.detail.value,
     })
   },
 
   // 重复设置
-  bindRepeatChange: function (event) {
+  bindRepeatChange: function(event) {
     this.setData({
       repeat: event.detail.value,
     })
@@ -98,7 +98,7 @@ Page({
   // },
 
   // 保存按钮
-  formSubmit: function (event) {
+  formSubmit: function(event) {
     var value = event.detail.value;
     // 判断必填项是否填写
     if (value.title == "") {
@@ -123,24 +123,26 @@ Page({
         top: value.top,
         repeat: value.repeat,
         week: week,
-        deleteState: false
+        deleteState: false,
+        nickname: app.globalData.nickname,
+        avatarUrl: app.globalData.avatarUrl,
       }
       if (this.data.id) {
         db.collection('event').doc(this.data.id).update({
-          data: data
-        }).then(console.log)
+            data: data
+          }).then(console.log)
           .catch(console.err)
       } else {
         db.collection("event").add({
-          data: data
-        }).then(console.log)
+            data: data
+          }).then(console.log)
           .catch(console.err)
       }
 
       // 返回首页，并重新加载数据
       wx.switchTab({
         url: '/pages/index/index',
-        success: function (event) {
+        success: function(event) {
           let page = getCurrentPages().pop();
           if (page == undefined || page == null) return;
           page.onShow()
@@ -164,7 +166,7 @@ Page({
     // })
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '简单漂亮的倒数日工具',
       path: '/pages/index/index',
