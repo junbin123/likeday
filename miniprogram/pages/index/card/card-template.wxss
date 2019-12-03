@@ -1,14 +1,15 @@
 .card {
-  width: 686rpx;
+  width: 702rpx;
   height: 64px;
   background: #fff;
-  margin-bottom: 16px;
-  border-radius: 6rpx;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  margin: 6px 0;
+  border-radius: 4px;
+  border: 1rpx solid #cdcdcd;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.10);
 }
 
 .card__left {
-  width: 470rpx;
+  width: 68%;
   height: 100%;
   float: left;
 }
@@ -30,28 +31,39 @@
 }
 
 .card__right {
-  width: 216rpx;
+  width: 32%;
   height: 100%;
   float: left;
   text-align: center;
-  line-height: 64px;
   color: #fff;
-  border-radius: 0rpx 6rpx 6rpx 0rpx;
+  border-radius: 0 4px 4px 0;
 }
 
-.card__right image {
-  width: 30px;
-  height: 30px;
+.card__right--top {
+  width: 26px;
+  height: 26px;
   position: absolute;
-  right: 32rpx;
+  right: 24rpx;
 }
 
-.card__right__day-count {
+.card__right--count {
   font-size: 36px;
   font-family: "Klavika";
+  line-height: 64px;
 }
 
-.card__right__day-unit {
-  margin-left: 4rpx;
-  font-size: 28rpx;
+.card__right--day {
+  font-family: "Klavika";
+  font-size: 12px;
+  opacity: 0.4;
+  margin-left: 150rpx;
+  margin-top: -14px;
+}
+
+.card--blue {
+  background: #455ac0;
+}
+
+.card--red {
+  background: #f75454;
 }

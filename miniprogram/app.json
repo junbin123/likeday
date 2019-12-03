@@ -9,7 +9,7 @@
   "window": {
     "backgroundTextStyle": "dark",
     "backgroundColor": "#fff",
-    "navigationBarBackgroundColor": "#EDEDED",
+    "navigationBarBackgroundColor": "#ededed",
     "navigationBarTitleText": "LikeDay",
     "navigationBarTextStyle": "black"
   },

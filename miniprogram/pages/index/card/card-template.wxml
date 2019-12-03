@@ -5,22 +5,13 @@
       <view class="card__left__title" wx:else>{{title}}已经过去</view>
       <view class="card__left__date">目标日：{{newTargetDate}} {{newWeek}}</view>
     </view>
-    <!-- 条件渲染蓝色 -->
-    <view class="card__right" style="background:#455AC0" wx:if="{{betweenDays>=0}}">
-      <image src="/images/other/top.png" wx:if="{{top}}"></image>
-      <view class="card__right__day">
-        <text class="card__right__day-count">{{betweenDays}}</text>
-        <text class="card__right__day-unit">天</text>
+    <!-- 天数 -->
+    <view class="card__right {{betweenDays >= 0 ? 'card--blue' : 'card--red'}}">
+      <image src="/images/other/top.png" wx:if="{{top}}" class="card__right--top"></image>
+      <view class="card__right--count">
+        {{betweenDays >= 0 ? betweenDays : - betweenDays}}
       </view>
-    </view>
-    <!-- 条件渲染红色 -->
-    <view class="card__right" style="background:#f75454" wx:else>
-      <image src="/images/other/top.png" wx:if="{{top}}"></image>
-      <view class="card__right__day">
-        <text class="card__right__day-count">{{-betweenDays}}</text>
-        <text class="card__right__day-unit">天</text>
-      </view>
+      <view class="card__right--day">DAY</view>
     </view>
   </view>
 </template>
-

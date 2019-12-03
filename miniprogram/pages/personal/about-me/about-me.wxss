@@ -38,6 +38,7 @@
   bottom: 0;
   border-top: 1rpx solid #d8d8d8;
   z-index: 999;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
 }
 
 .btn-copy {
