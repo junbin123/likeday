@@ -8,7 +8,7 @@
   left: 0;
   justify-content: space-around;
   border-top: solid 1rpx #d8d8d8;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tabbar-item {

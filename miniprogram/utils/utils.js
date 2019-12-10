@@ -96,6 +96,14 @@ function formatDate(date) {
   return (year + "-" + month + "-" + day)
 }
 
+// 输入：2019 3 5
+// 输出：2019-03-05
+function formatDateTemp(year, month, day) {
+  month = month.toString().length === 1 ? '0' + month : month
+  day = day.toString().length === 1 ? '0' + day : day
+  return (year + '-' + month + '-' + day)
+}
+
 
 // 加载数字字体Klavika
 function getNumberFont() {
@@ -162,4 +170,5 @@ module.exports = {
   getBetweenDaysArray: getBetweenDaysArray,
   formatDate: formatDate,
   resetTargetDate: resetTargetDate,
+  formatDateTemp: formatDateTemp,
 }

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "rui-datepicker":"/components/rui-datepicker/rui-datepicker"
+  },
   "navigationBarTitleText": "新建事件"
 }

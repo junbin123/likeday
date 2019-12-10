@@ -13,7 +13,7 @@
   bottom: 0;
   border-top: 1rpx solid #d8d8d8;
   z-index: 999;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 button::after {
@@ -22,39 +22,28 @@ button::after {
 
 .btn {
   height: 44px;
+  width: 158rpx;
+  line-height: 44px;
   margin-top: 10px;
-  border-radius: 4rpx;
+  margin-left: 24rpx;
   float: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .btn-share {
   width: 338rpx;
   background: #455ac0;
-  margin-left: 32rpx;
   color: #fff;
-  border-radius: 4rpx;
 }
 
 .btn-edit {
   background: #d9d9d9;
-  width: 158rpx;
-  margin-left: 16rpx;
-  border-radius: 4rpx;
   color: #455ac0;
 }
 
 .btn-delete {
   background: #d9d9d9;
-  width: 158rpx;
-  margin-left: 16rpx;
-  border-radius: 4rpx;
   color: #f75454;
-}
-
-.btn text {
-  font-size: 16px;
-  font-weight: bold;
 }

@@ -4,12 +4,12 @@
 
 <view class="btn-box" style="height:{{height}}">
   <button class="btn btn-share" bindtap="onSaveImage">
-    <text>保存图片到相册</text>
+    保存图片到相册
   </button>
   <button class="btn btn-edit" bindtap="onEditCard">
-    <text>编辑</text>
+编辑
   </button>
   <button class="btn btn-delete" bindtap="onDeleteCard">
-    <text>删除</text>
+删除
   </button>
 </view>

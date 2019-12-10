@@ -4,43 +4,17 @@ const app = getApp();
 
 Page({
   data: {
-    // reminder: ['不设置提醒', '提前一天', '提前两天', '提前三天', '提前四天', '提前五天'],
-    // reminderIndex: 0,
+    repeatArr: ['不重复', '每天重复', '每周重复', '每月重复', '每年重复'],
     id: "",
     title: '',
     targetDate: '',
+    targetDateSolar: '',
+    targetDateLunar: '',
+    targetDateStr: '请选择日期',
+    isLunar: false,
     category: 0,
     top: false,
     repeat: 0,
-    form: [{
-        type: 'title',
-        placeholder: '输入事件名，例如：她的生日',
-        iconUrl: '/images/icon/form_icon/title.png'
-      },
-      {
-        type: 'targetDate',
-        title: '目标日',
-        iconUrl: '/images/icon/form_icon/date.png'
-      },
-      {
-        type: 'category',
-        title: '分类',
-        iconUrl: '/images/icon/form_icon/category.png',
-        categoryArr: ['生活', '工作', '纪念日', '添加新分类'],
-      },
-      {
-        type: 'top',
-        title: '置顶',
-        iconUrl: '/images/icon/form_icon/top.png'
-      },
-      {
-        type: 'repeat',
-        title: '重复',
-        iconUrl: '/images/icon/form_icon/repeat.png',
-        repeatArr: ['不重复', '每天重复', '每周重复', '每月重复', '每年重复'],
-      }
-    ]
-
   },
 
   onLoad: function(options) {
@@ -53,6 +27,8 @@ Page({
         id: options.id,
         title: card.title,
         targetDate: card.targetDate,
+        targetDateStr: card.targetDateStr,
+        isLunar: card.isLunar,
         top: card.top,
         repeat: card.repeat,
       })
@@ -63,18 +39,25 @@ Page({
   bindTitleConfirm: function(event) {},
 
   // 目标日输入
-  bindDateChange: function(event) {
-    this.setData({
-      targetDate: event.detail.value
-    })
+  showDatepicker: function() {
+    this.selectComponent("#ruiDatepicker").init({
+      date: '',
+      showHour: false,
+      confirm: false
+    });
   },
 
-  // 分类设置
-  // bindCategoryChange: function(event) {
-  //   this.setData({
-  //     category: event.detail.value,
-  //   })
-  // },
+  dateConfirm: function(event) {
+    var date = event.detail
+    console.log(date)
+    this.setData({
+      targetDate: utils.formatDateTemp(date.year, date.month, date.day),
+      targetDateSolar: date.solarStr,
+      targetDateLunar: date.lunarStr,
+      targetDateStr: date.thisStr,
+      isLunar: date.lastTab === "lunar" ? true : false,
+    })
+  },
 
   // 置顶设置
   bindTopChange: function(event) {
@@ -90,12 +73,6 @@ Page({
     })
   },
 
-  // 提醒时间设置
-  // bindReminderChange: function(event) {
-  //   this.setData({
-  //     reminderIndex: event.detail.value
-  //   })
-  // },
 
   // 保存按钮
   formSubmit: function(event) {
@@ -107,7 +84,7 @@ Page({
         icon: 'none',
         duration: 1000
       })
-    } else if (value.targetDate == "") {
+    } else if (this.data.targetDate == "") {
       wx.showToast({
         title: '请设置目标日期',
         icon: 'none',
@@ -118,7 +95,11 @@ Page({
         week = "星期" + weeks[new Date(value.targetDate).getDay()];
       var data = {
         title: value.title,
-        targetDate: value.targetDate,
+        targetDate: this.data.targetDate,
+        targetDateSolar: this.data.targetDateSolar,
+        targetDateLunar: this.data.targetDateLunar,
+        targetDateStr: this.data.targetDateStr,
+        isLunar: this.data.isLunar,
         category: 0,
         top: value.top,
         repeat: value.repeat,
@@ -149,21 +130,6 @@ Page({
         }
       })
     }
-    // 实现订阅消息
-    // wx.requestSubscribeMessage({
-    //   tmplIds: ['yyFvDHU6xbrik5jQwYDpJuix8OOiBIvNrNTyC6u4anA'],
-    //   success(res) {
-    //     wx.cloud.callFunction({
-    //       name: "push",
-    //       success(res) {
-    //         console.log("调用云函数push成功" + res)
-    //       },
-    //       fail(res) {
-    //         console.log("调用云函数push失败" + res)
-    //       }
-    //     })
-    //   }
-    // })
   },
 
   onShareAppMessage: function() {
