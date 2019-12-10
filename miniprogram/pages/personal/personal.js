@@ -4,10 +4,11 @@ var app = getApp();
 Page({
   data: {
     section: [{
-        title: "意见反馈",
+        title: "吐个槽",
         icon: "/images/icon/personal_icon/contact.png",
         line: true,
-        openType: "feedback"
+        openType: "",
+        bindtap: "onTucaoMiniProgram"
       },
       {
         title: "关于开发者",
@@ -25,7 +26,7 @@ Page({
     ],
     hasGetUserInfo: false,
     avatarUrl: app.globalData.avatarUrl,
-    nickname: app.globalData.nickname
+    nickname: app.globalData.nickname,
   },
 
 
@@ -56,6 +57,19 @@ Page({
   onAboutMe: function(event) {
     wx.navigateTo({
       url: '/pages/personal/about-me/about-me',
+    })
+  },
+
+  onTucaoMiniProgram: function() {
+    wx.navigateToMiniProgram({
+      appId: 'wx8abaf00ee8c3202e',
+      extraData: {
+        id: "108043",
+        customData: {
+          clientInfo: app.globalData.model,
+          osVersion: app.globalData.system,
+        }
+      }
     })
   },
 

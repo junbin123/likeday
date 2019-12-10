@@ -34,5 +34,8 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wx8abaf00ee8c3202e"
+  ]
 }

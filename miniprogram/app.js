@@ -8,6 +8,8 @@ App({
     hasGetUserInfo: false,
     avatarUrl: '/images/icon/personal_icon/default_avatar.png',
     nickname: '点击登录',
+    model: '',
+    system: '',
   },
 
   onLaunch: function() {
@@ -27,6 +29,8 @@ App({
         if (res.model.search("iPhone X") != -1) {
           this.globalData.isIPX = true
         }
+        this.globalData.model = res.model
+        this.globalData.system = res.system
       }
     })
 

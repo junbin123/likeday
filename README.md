@@ -63,6 +63,9 @@ git clone https://github.com/junbin123/likeday.git
 
 ## 更新记录
 
+- **V1.0.5 - 2019.12.10**
+  - 接入「吐个槽」小程序
+
 - **V1.0.4 - 2019.12.10**
   - 添加农历
 

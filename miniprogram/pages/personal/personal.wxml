@@ -10,4 +10,5 @@
   <template is="sectionTemplate" data="{{...item}}">
   </template>
 </block>
+
 <tabbar></tabbar>
