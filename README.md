@@ -63,6 +63,9 @@ git clone https://github.com/junbin123/likeday.git
 
 ## 更新记录
 
+- **V1.0.4 - 2019.12.10**
+  - 添加农历
+
 - **V1.0.3 - 2019.12.03**
   - 修改首页 UI
 
