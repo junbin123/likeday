@@ -1,0 +1,34 @@
+// 颜色
+$color-blue: #495aff;
+$color-red: #ff4a52;
+$color-black: #333;
+$color-gray: #666;
+$color-lightgray: #a8a8ac;
+$color-border: #e1e1e1;
+$color-white: #fff;
+
+$color-font-black: #333;
+$color-font-gray: #666;
+$color-font-lightgray: #a8a8ac;
+
+$color-hover: #ededed;
+$color-bg-gray: #f1f1f1;
+$color-bg-lightgray: #f8f8f8;
+
+// flex居中
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-between(){
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+// 文字超出省略
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

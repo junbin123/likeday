@@ -1,0 +1,26 @@
+// https://juejin.cn/post/6844904093568221191
+{
+  "include": ["src/**/*"],
+  // "extensions": [".js", ".ts", ".vue", ".json"],
+  "exclude": ["node_modules", "unpackage", "src/**/*.nvue", "dist", "public", "script"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "strictNullChecks": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "types": ["webpack-env", "@dcloudio/types", "miniprogram-api-typings", "mini-types"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

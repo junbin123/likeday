@@ -3,10 +3,10 @@
     <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9fb9gu5yej30dw0dwwfr.jpg" alt="开发工程师路线图" width="90" height="90">
   </a>
   <h2 align="center">LikeDay - 微信小程序</h2>
-  <p align="center">一个简单漂亮的倒数日小工具</p>
+  <p align="center">一个简单好用的倒数日小工具</p>
   <p align="center">
-    <a href="https://github.com/junbin123/likeday"><img src="https://img.shields.io/badge/version-v1.0.2-blue"/></a>
-    <a href="https://weibo.com/u/6208092799"><img src="https://img.shields.io/badge/weibo-%40%E4%BC%8D%E5%90%8C%E5%AD%A6%E5%91%80-red"/></a>
+    <a href="https://github.com/junbin123/likeday"><img src="https://img.shields.io/badge/version-v1.0.6-blue"/></a>
+    <a href="https://web.okjike.com/u/6E4057E1-B0E1-4E91-8DC3-0A86FB4DC213"><img src="https://img.shields.io/badge/即刻-吾儿滨滨-yellow"/></a>
     <a href="https://github.com/junbin123/likeday"><img src="https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-abcmeego-green"/></a>
 
 

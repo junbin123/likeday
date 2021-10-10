@@ -1,0 +1,48 @@
+//不透明度
+.b-hover-opacity {
+  opacity: 0.7;
+}
+.v-hover-opacity {
+  &:active {
+    opacity: 0.7;
+  }
+}
+.v-hover-background {
+  &:active {
+    background: $color-bg-gray !important;
+  }
+}
+//灰色
+.b-hover-grey {
+  background: #f5f5f5 !important;
+}
+//非button点击效果
+.v-hover-grey {
+  &:active {
+    background: #f5f5f5 !important;
+  }
+}
+
+.hover-color-ddd {
+  background: #ddd;
+}
+
+
+.hover-color-gray{
+  background-color: #e2e2e2;  
+}
+
+.hover-bg-gray {
+  background: #d1d2d3;
+}
+.hover-bg-blue {
+  background: #3a48cc;
+}
+
+.hover-image{
+  opacity: 0.8;
+}
+
+.hover-class-bg{
+  background: #DDDDDD;
+}

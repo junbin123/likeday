@@ -1,0 +1,17 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#05419F",
+    "activityBar.border": "#05419F",
+    "activityBar.activeBorder": "#3367B7",
+    "activityBar.activeBackground": "#3367B7",
+    "activityBar.foreground": "#FFF",
+    "titleBar.activeForeground": "#FFF",
+    "titleBar.activeBackground": "#123456",
+    "statusBar.background": "#123456",
+    "activityBarBadge.foreground": "#fff",
+    "activityBarBadge.background": "#152B4E",
+    "tab.activeBackground": "#512F2C",
+  },
+  "editor.cursorSmoothCaretAnimation": true,
+  "zenMode.hideStatusBar": false
+}

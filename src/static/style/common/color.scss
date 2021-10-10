@@ -1,0 +1,88 @@
+.color-333 {
+  color: #333;
+}
+.color-666 {
+  color: #666;
+}
+.color-999 {
+  color: #999;
+}
+.color-ccc {
+  color: #ccc;
+}
+.color-white {
+  color: white;
+}
+
+/* 文字基本颜色 */
+//主题色
+.font-color-main {
+  color: $color-blue;
+}
+//字体黑
+.font-color-black {
+  color: #1a1a1a;
+}
+//字体次黑
+.font-color-small-black {
+  color: #666666;
+}
+//字体大灰
+.font-color-grey {
+  color: #808080;
+}
+//字体小灰
+.font-color-small-grey {
+  color: #ababab;
+}
+//字体白
+.font-color-white {
+  color: #fff;
+}
+//红包黄
+.font-color-yellow {
+  color: #ffe6a2;
+}
+//金钱金
+.font-color-golden {
+  color: #b39004;
+}
+//标签绿
+.font-color-green {
+  color: #06c17d;
+}
+.bg-color-disabled {
+  color: rgba(204, 204, 204, 0.29);
+}
+//灰度黑色
+.font-color-gray-block {
+  color: #333333 !important;
+}
+
+.color-blue {
+  color: $color-blue;
+}
+.color-red {
+  color: $color-red;
+}
+.color-black {
+  color: $color-black;
+}
+.color-lightgray {
+  color: $color-lightgray;
+}
+.color-font-black {
+  color: $color-font-black;
+}
+.color-font-gray {
+  color: $color-font-gray;
+}
+.color-font-lightgray {
+  color: $color-font-lightgray;
+}
+.color-bg-gray {
+  color: $color-bg-gray;
+}
+.color-bg-lightgray {
+  color: $color-bg-lightgray;
+}

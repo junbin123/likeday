@@ -1,9 +1,0 @@
-<import src="card/card-template.wxml" />
-<view class="container" style="height:{{canUseHeight}}px">
-  <block wx:for="{{cards}}" wx:key="key1">
-    <view>
-      <template is="cardTemplate" data="{{...item}}" />
-    </view>
-  </block>
-</view>
-<image src="/images/other/create_tip.png" class="tip-img" wx:if="{{emptyState}}"></image>
