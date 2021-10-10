@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
-import uniAsync from './js_sdk/uni_async'
 import VueBus from './utils/vueBus.js'
 import dayjs from 'dayjs'
 
@@ -14,7 +13,6 @@ uni.loadFontFace({
   success: res => { console.log('字体加载成功', res) },
   fail: res => { console.log('字体加载失败', res) }
 })
-Vue.prototype.$uniAsync = uniAsync
 Vue.prototype.$day = dayjs
 Vue.use(VueBus)
 

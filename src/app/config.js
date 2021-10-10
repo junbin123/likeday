@@ -1,6 +1,4 @@
-
 const { VUE_APP_ENV = 'dev' } = process.env
-console.log({ VUE_APP_ENV }, '----')
 const version = 'v1'
 const apiConfig = {
   dev: `http://localhost:3000/${version}`,

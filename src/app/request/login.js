@@ -1,20 +1,30 @@
-import uniAsync from '@/js_sdk/uni_async.js'
 import store from '@/store'
 import config from '../config.js'
 const baseUrl = config.baseUrl
 const login = async () => {
-  const { code } = await uniAsync.login({})
-  try {
-    const res = await uniAsync.request({
-      url: baseUrl + '/login',
-      data: { code },
-      method: 'GET'
+  const promise = new Promise((resolve, reject) => {
+    uni.login({
+      success: res => {
+        const code = res.code
+        uni.request({
+          url: baseUrl + '/login',
+          data: { code },
+          method: 'GET',
+          success: resData => {
+            const userInfo = resData.data.userInfo
+            store.dispatch('app/updateUserInfo', userInfo)
+            resolve(userInfo)
+          },
+          fail: errData => {
+            reject(errData)
+          }
+        })
+      },
+      fail: err => {
+        reject(err)
+      }
     })
-    const { userInfo } = res.data
-    store.dispatch('app/updateUserInfo', userInfo)
-    return Promise.resolve(userInfo)
-  } catch (err) {
-    return Promise.reject(err)
-  }
+  })
+  return promise
 }
 export default login
