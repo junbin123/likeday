@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run page | cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
-    "build": "npm run page | cross-env NODE_ENV=production UNI_PLATFORM=mp-weixin vue-cli-service uni-build",
+    "dev": "npm run page | cross-env NODE_ENV=development VUE_APP_ENV=prod UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
+    "dev:prod": "npm run page | cross-env NODE_ENV=development VUE_APP_ENV=prod UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
+    "build": "npm run page | cross-env NODE_ENV=production VUE_APP_ENV=prod UNI_PLATFORM=mp-weixin vue-cli-service uni-build",
     "page": "node script/watchPage"
   },
   "dependencies": {

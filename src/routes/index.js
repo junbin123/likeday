@@ -31,7 +31,6 @@ module.exports = {
     {
       path: 'pages/index/detail',
       style: {
-        navigationStyle: 'custom',
         navigationBarTitleText: ''
       }
     },

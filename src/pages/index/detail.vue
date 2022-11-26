@@ -1,28 +1,15 @@
 <template>
-  <view class="container flex-center flex-column">
-    <image
-      class="container-bg"
-      mode="aspectFill"
-      src="https://images.unsplash.com/photo-1633130285991-6fdd6a44c204?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1453&q=80"
-    ></image>
-    <CountdownCard :item="countdownInfo"/>
-    <!-- <view class="share-image">
-      <LoadingImage
-        width="600rpx"
-        height="776rpx"
-        :src="tempFilePath"
-        @handleClick="handleImageClick"
-      />
-    </view> -->
-    <view class="click-text font-size-14 color-999 flex-center"
-      >▲点击预览，保存图片</view
-    >
+  <view class="container page-container">
+    <view class="share-image">
+      <LoadingImage width="600rpx" height="776rpx" :src="tempFilePath" @handleClick="handleImageClick"/>
+    </view>
+    <view class="click-text font-size-14 color-999 flex-center">▲点击预览，保存图片</view>
 
     <canvas class="poster-canvas" canvas-id="posterCanvas"></canvas>
     <canvas class="number-canvas" canvas-id="numberCanvas"></canvas>
     <canvas class="card-canvas" canvas-id="cardCanvas"></canvas>
 
-    <!-- <ButtonList :buttonList="buttonList" @handleClick="handleBtnClick" /> -->
+    <ButtonList :buttonList="buttonList" @handleClick="handleBtnClick" />
   </view>
 </template>
 
@@ -34,20 +21,18 @@ import CanvasContext from '@/utils/canvas.js'
 import { getTitleTextInfo } from '@/utils/poster.js'
 import { getStrLength } from '@/utils/base.js'
 import { archiveCountdown } from '@/app/service/countdown.js'
-// import LoadingImage from '@/components/Basics/LoadingImage.vue'
-import CountdownCard from '@/components/Business/Common/CountdownCard.vue'
+import LoadingImage from '@/components/Basics/LoadingImage.vue'
 import login from '@/app/request/login.js'
 import { mapState } from 'vuex'
-// import ButtonList from '@/components/Basics/ButtonList.vue'
+import ButtonList from '@/components/Basics/ButtonList.vue'
 export default {
-  components: { CountdownCard },
+  components: { LoadingImage, ButtonList },
   data () {
     return {
       countdownInfo: {}, // 事件信息
       dayCountUrl: '', // 天数图片
       numberInfo: {}, // 天数图片中间数字渲染数据
-      renderInfo: {
-        // 渲染用数据
+      renderInfo: { // 渲染用数据
         title: '我是标题',
         dayCount: 23,
         targetStr: '目标日：2021/01/01 星期五',
@@ -61,7 +46,7 @@ export default {
   computed: {
     ...mapState('app', {
       isIphoneX: (state) => state.systemInfo.isIphoneX,
-      uid: (state) => state.userInfo.uid,
+      uid: state => state.userInfo.uid,
       nickName: (state) => state.userInfo.nickName
     }),
     isCreator ({ countdownInfo, uid }) {
@@ -75,18 +60,15 @@ export default {
           { type: 'default', name: '分享', openType: 'share', width: '338rpx' }
         ]
       } else {
-        return [
-          {
-            type: 'gray',
-            name: '复制',
-            label: 'copy'
-          },
-          {
-            type: 'default',
-            name: '分享',
-            openType: 'share'
-          }
-        ]
+        return [{
+          type: 'gray',
+          name: '复制',
+          label: 'copy'
+        }, {
+          type: 'default',
+          name: '分享',
+          openType: 'share'
+        }]
       }
     }
   },
@@ -112,9 +94,7 @@ export default {
   onPullDownRefresh () {},
   onReachBottom () {},
   onShareAppMessage (e) {
-    const path = `/pages/index/detail?data=${encodeURIComponent(
-      JSON.stringify(this.countdownInfo)
-    )}`
+    const path = `/pages/index/detail?data=${encodeURIComponent(JSON.stringify(this.countdownInfo))}`
     return {
       title: `${this.nickName || '我'} 分享一个倒数日给你`,
       imageUrl: this.shareCardUrl,
@@ -124,13 +104,10 @@ export default {
   methods: {
     async getRenderInfo () {
       const { title = '', dayTimes = 0 } = this.countdownInfo
-      const { isLunar, week, solorDate, lunarDate } =
-        this.countdownInfo.targetDate
+      const { isLunar, week, solorDate, lunarDate } = this.countdownInfo.targetDate
       const weekList = ['日', '一', '二', '三', '四', '五', '六']
       const weekStr = `星期${weekList[week]}`
-      const targetStr = isLunar
-        ? `目标日：${lunarDate}`
-        : `目标日：${solorDate} ${weekStr}`
+      const targetStr = isLunar ? `目标日：${lunarDate}` : `目标日：${solorDate} ${weekStr}`
       return {
         title,
         dayCount: Math.abs(dayTimes),
@@ -142,9 +119,7 @@ export default {
     handleBtnClick ({ label, ...item }) {
       console.log('handleBtnClick', item)
       if (label === 'edit') {
-        const url = `/pages/index/add?eventInfo=${encodeURIComponent(
-          JSON.stringify(this.countdownInfo)
-        )}&id=${this.countdownInfo.id}`
+        const url = `/pages/index/add?eventInfo=${encodeURIComponent(JSON.stringify(this.countdownInfo))}&id=${this.countdownInfo.id}`
         uni.navigateTo({ url })
         return
       }
@@ -156,19 +131,17 @@ export default {
           confirmColor: '#E33636',
           success: (res) => {
             if (res.confirm) {
-              archiveCountdown({ ...this.countdownInfo, isArchive: true }).then(
-                (result) => {
-                  uni.showToast({
-                    title: result.msg,
-                    icon: 'none'
-                  })
-                  const timer = setTimeout(() => {
-                    uni.switchTab({ url: '/pages/index/home' })
-                    this.$bus('refreshHome', { isSwitch: false })
-                    clearTimeout(timer)
-                  }, 300)
-                }
-              )
+              archiveCountdown({ ...this.countdownInfo, isArchive: true }).then(result => {
+                uni.showToast({
+                  title: result.msg,
+                  icon: 'none'
+                })
+                const timer = setTimeout(() => {
+                  uni.switchTab({ url: '/pages/index/home' })
+                  this.$bus('refreshHome', { isSwitch: false })
+                  clearTimeout(timer)
+                }, 300)
+              })
             } else if (res.cancel) {
             }
           }
@@ -176,9 +149,7 @@ export default {
       }
       if (label === 'copy') {
         const { id, ...data } = this.countdownInfo
-        const url = `/pages/index/add?eventInfo=${encodeURIComponent(
-          JSON.stringify(data)
-        )}`
+        const url = `/pages/index/add?eventInfo=${encodeURIComponent(JSON.stringify(data))}`
         uni.navigateTo({ url })
       }
     },
@@ -187,7 +158,7 @@ export default {
         uni.previewImage({
           current: this.tempFilePath,
           urls: [this.tempFilePath],
-          complete: (res) => {
+          complete: res => {
             console.log(res, '预览')
           }
         })
@@ -203,17 +174,13 @@ export default {
       })
       ctx
         .image({
-          url:
-            this.renderInfo.type === 'blue'
-              ? '/static/image/poster/blue-card.png'
-              : '/static/image/poster/red-card.png',
+          url: this.renderInfo.type === 'blue' ? '/static/image/poster/blue-card.png' : '/static/image/poster/red-card.png',
           x: 0,
           y: 0,
           width: 420,
           height: 336
         })
-        .image({
-          // 渲染天数
+        .image({ // 渲染天数
           url: this.dayCountUrl,
           x: 32,
           y: 126,
@@ -221,8 +188,7 @@ export default {
           height: 148
         })
 
-      const dayXYDict = {
-        // 根据天数长度，获取「天」字渲染x、y值
+      const dayXYDict = { // 根据天数长度，获取「天」字渲染x、y值
         1: {
           width: 43,
           height: 40,
@@ -260,27 +226,20 @@ export default {
           y: 200
         }
       }
-      const {
-        x = 354,
-        y = 194,
-        width = 34,
-        height = 32
-      } = dayXYDict[String(this.renderInfo.dayCount).length] || {}
-      ctx.image({
-        // 渲染「天」字
-        url:
-          this.renderInfo.type === 'blue'
-            ? 'https://img-blog.csdnimg.cn/20210627234220616.png'
-            : 'https://img-blog.csdnimg.cn/20210627234216550.png',
-        x,
-        y,
-        width,
-        height
-      })
+      const { x = 354, y = 194, width = 34, height = 32 } = dayXYDict[String(this.renderInfo.dayCount).length] || {}
+      ctx
+        .image({ // 渲染「天」字
+          url: this.renderInfo.type === 'blue' ? 'https://img-blog.csdnimg.cn/20210627234220616.png' : 'https://img-blog.csdnimg.cn/20210627234216550.png',
+          x,
+          y,
+          width,
+          height
+        })
       ctx = this.renderTitle({ ctx, x: 210, top: 20, maxWidth: 290 })
-      ctx.draw().then((res) => {
-        this.shareCardUrl = res.tempFilePath
-      })
+      ctx.draw()
+        .then((res) => {
+          this.shareCardUrl = res.tempFilePath
+        })
     },
     // 渲染海报
     async renderPoster () {
@@ -290,10 +249,7 @@ export default {
       })
       ctx
         .image({
-          url:
-            this.renderInfo.type === 'blue'
-              ? '/static/image/poster/blue-poster.png'
-              : '/static/image/poster/red-poster.png',
+          url: this.renderInfo.type === 'blue' ? '/static/image/poster/blue-poster.png' : '/static/image/poster/red-poster.png',
           x: 0,
           y: 0,
           width: 375,
@@ -323,9 +279,10 @@ export default {
         })
       // 渲染标题
       ctx = this.renderTitle({ ctx, x: 187 })
-      ctx.draw().then((res) => {
-        this.tempFilePath = res.tempFilePath
-      })
+      ctx.draw()
+        .then((res) => {
+          this.tempFilePath = res.tempFilePath
+        })
     },
     /**
      * 渲染天数图片，450*233px，依赖<canvas>
@@ -380,24 +337,23 @@ export default {
           height: imageHeight - 2
         })
 
-      String(dayCount)
-        .split('')
-        .forEach((item, index) => {
-          ctx.image({
-            ...imageOptions,
-            x: firstImageX + index * imageWidth - index, // 每个图片盖住前一个图片一像素
-            url: `/static/image/number/${item}.png`
+      String(dayCount).split('').forEach((item, index) => {
+        ctx.image({
+          ...imageOptions,
+          x: firstImageX + index * imageWidth - index, // 每个图片盖住前一个图片一像素
+          url: `/static/image/number/${item}.png`
+        })
+      })
+      return new Promise(resolve => {
+        ctx
+          .draw()
+          .then((res) => {
+            const numberInfo = { // 数字尺寸数据
+              width: imageBoxWidth,
+              heihgt: imageHeight
+            }
+            resolve({ ...res, numberInfo })
           })
-        })
-      return new Promise((resolve) => {
-        ctx.draw().then((res) => {
-          const numberInfo = {
-            // 数字尺寸数据
-            width: imageBoxWidth,
-            heihgt: imageHeight
-          }
-          resolve({ ...res, numberInfo })
-        })
       })
     },
     /**
@@ -405,12 +361,8 @@ export default {
      * @param {CanvasContext} ctx new CanvasContext对象
      */
     renderTitle ({ ctx, x, maxWidth = 275, top = 27 }) {
-      const title =
-        this.renderInfo.title +
-        (this.renderInfo.type === 'blue' ? '还有' : '过去')
-      const { fontSize, rows, sliceIndex } = getTitleTextInfo(
-        getStrLength(title)
-      )
+      const title = this.renderInfo.title + (this.renderInfo.type === 'blue' ? '还有' : '过去')
+      const { fontSize, rows, sliceIndex } = getTitleTextInfo(getStrLength(title))
       const options = {
         maxWidth,
         font: `normal bold ${fontSize}px sans-serif`,
@@ -456,37 +408,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  height: 100vh;
-  width: 100%;
+.container{
+  padding-top: 100rpx;
 }
-.container-bg {
-  left: 0;
-  top: 0;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  // -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.poster-canvas {
-  width: 375px;
-  height: 485px;
+.poster-canvas{
+  width:375px;
+  height:485px;
   position: fixed;
   left: -5000px;
 }
-.img-item {
+.img-item{
   width: 300px;
   height: 388px;
 }
-.number-canvas {
+.number-canvas{
   width: 450px;
   height: 233px;
   position: fixed;
   left: -5000px;
 }
-.card-canvas {
+.card-canvas{
   width: 420px;
   height: 336px;
   position: fixed;
@@ -504,22 +445,22 @@ export default {
   .btn-item {
     width: 50%;
   }
-  .btn-left {
+  .btn-left{
     padding-right: 12rpx;
   }
-  .btn-right {
+  .btn-right{
     padding-left: 12rpx;
   }
 }
-.share-image {
+.share-image{
   width: 600rpx;
   height: 776rpx;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.06);
   position: relative;
   left: 50%;
   margin-left: -300rpx;
 }
-.click-text {
+.click-text{
   height: 50px;
   line-height: 50px;
 }
