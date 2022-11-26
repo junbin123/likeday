@@ -328,6 +328,8 @@ export default {
           }
           console.log('编辑事件', res)
         } else {
+          console.log('2------------')
+          console.log(data)
           const res = await addCountdown(data)
           console.log('添加事件', res)
         }

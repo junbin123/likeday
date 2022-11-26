@@ -33,9 +33,9 @@
       <MeCell iconName="icon-feedback" title="吐个槽" data="tugecao" @click="handleCellClick"/>
     </view>
 
-    <view class="overflow border-radius-4 box-shadow margin-top-30">
+    <!-- <view class="overflow border-radius-4 box-shadow margin-top-30">
       <MeCell iconName="icon-update" title="同步我之前的数据" data="sync" @click="handleCellClick"/>
-    </view>
+    </view> -->
 
     <!-- <button @click="deleteUser">删除用户</button> -->
 

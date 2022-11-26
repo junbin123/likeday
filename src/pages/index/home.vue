@@ -1,50 +1,31 @@
 <template>
-  <view
-    class="container"
-    :catchtouchmove="isShowSidebar ? true:''"
-    @touchstart="touchstart"
-    @touchend="touchend">
+  <view class="container" :catchtouchmove="isShowSidebar ? true : ''" @touchstart="touchstart" @touchend="touchend">
     <view class="loading-box">
-      <GLoading  v-model="isLoading" position="sbsolute"/>
+      <GLoading v-model="isLoading" position="sbsolute" />
     </view>
-    <SwiperAnimate v-model="showGesture"/>
+    <SwiperAnimate v-model="showGesture" />
     <view class="tabbar-container" :style="isShowSidebar ? 'transform:translateX(68%)' : ''">
-      <TabBar :isFixed="false"/>
+      <TabBar :isFixed="false" />
     </view>
     <!-- 切换tab -->
     <view class="slide-container" :style="isShowSidebar ? 'transform:translateX(68%)' : ''">
-      <HomeSlideTab
-        :iconUrl="tabInfo.iconUrl"
-        :title="tabInfo.title"
-        :showLeftIcon="!isShowSidebar"
-        @handleClickIcon="handleMenuClick"/>
+      <HomeSlideTab :iconUrl="tabInfo.iconUrl" :title="tabInfo.title" :showLeftIcon="!isShowSidebar"
+        @handleClickIcon="handleMenuClick" />
     </view>
     <!-- 侧边栏 -->
-    <HomeSidebar
-      v-model="isShowSidebar"
-      :selectIndex="tabIndex"
-      :isBounce="isBounce"
-      @handleClick="handleSideClick"/>
+    <HomeSidebar v-model="isShowSidebar" :selectIndex="tabIndex" :isBounce="isBounce" @handleClick="handleSideClick" />
     <!-- 引导对话框 -->
     <view class="msg-tips-box" :style="[tipsStyle]">
-      <GMsgTips
-        v-if="false"
-        :arrowDirect="tipsInfo.arrowDirect"
-        :isAnimation="true"
-        :arrowMove="tipsInfo.arrowMove">{{tipsInfo.title}}</GMsgTips>
+      <GMsgTips v-if="false" :arrowDirect="tipsInfo.arrowDirect" :isAnimation="true" :arrowMove="tipsInfo.arrowMove">
+        {{ tipsInfo.title }}</GMsgTips>
     </view>
 
     <view class="event-container" :style="isShowSidebar ? 'transform:translateX(68%)' : ''">
-      <view
-        class="countdown-box"
-        v-for="item in pageList"
-        :key="item.id">
-        <EventCard
-          :item="item"
-          @handleClick="handleEventClick"/>
+      <view class="countdown-box" v-for="item in pageList" :key="item.id">
+        <EventCard :item="item" @handleClick="handleEventClick" />
       </view>
-      <NoData v-if="!initLoading && pageList.length === 0"/>
-      <view class="footer-text color-999 font-size-14 padding-top-20">{{footerText}}</view>
+      <NoData v-if="!initLoading && pageList.length === 0" />
+      <view class="footer-text color-999 font-size-14 padding-top-20">{{ footerText }}</view>
     </view>
   </view>
 </template>
@@ -59,8 +40,7 @@ import EventCard from '@/components/Basics/EventCard'
 import NoData from '@/components/Basics/NoData'
 import SwiperAnimate from '@/components/Business/Home/SwiperAnimate'
 import { mapState } from 'vuex'
-import { getCountdownList, formatCountdown } from '@/app/service/countdown'
-import { moveUserInfo, getUserInfo } from '@/app/service/user'
+import { addCountdown, archiveCountdown, getCountdownList, formatCountdown } from '@/app/service/countdown'
 import { pagination } from '@/mixins/pagination'
 
 export default {
@@ -154,8 +134,7 @@ export default {
       this.pageList = this.getPageListDefault() // 朋友圈显示默认倒数日
       return
     }
-    const { moveUid, moveOpenid } = options
-    await this.setMoveUserInfo({ moveUid, moveOpenid })
+
     const res = await this.getInitList(this.params)
     console.log(res, '==')
     this.isBounce = true
@@ -163,9 +142,13 @@ export default {
     uni.showShareMenu({
       menus: ['shareAppMessage', 'shareTimeline']
     })
+
+    // 迁移的代码
+    const { moveOpenid } = options
+    this.setMoveOldEvent({ moveOpenid })
   },
-  onShow () {},
-  onReady () {},
+  onShow () { },
+  onReady () { },
   onReachBottom () {
     if (!this.loading && this.pageList.length < this.total) {
       this.loadNextPage(this.params)
@@ -178,7 +161,7 @@ export default {
       path: '/pages/index/home'
     }
   },
-  onPageScroll (res) {},
+  onPageScroll (res) { },
   onShareTimeline (res) {
     return {
       title: '一款好用的倒数日工具',
@@ -193,28 +176,51 @@ export default {
   },
   methods: {
     // 迁移用户数据
-    async setMoveUserInfo ({ moveUid, moveOpenid }) {
-      if (!moveUid || !moveOpenid) {
+    setMoveOldEvent ({ moveOpenid }) {
+      const myRequest = (url, data) => {
+        const p = new Promise((resolve, reject) => {
+          const baseUrl = 'https://likeday-f4b2b.service.tcloudbase.com/get-old-likeday/v1/demo'
+          uni.request({
+            url: baseUrl + url,
+            data,
+            success: (res) => {
+              resolve(res)
+            },
+            fail: (err) => {
+              reject(err)
+            }
+          })
+        })
+        return p
+      }
+      if (!moveOpenid) {
         return
       }
       uni.showLoading({
-        title: '数据迁移中...',
+        title: '数据迁移中，请不要退出...',
         mask: true
       })
-      try {
-        const res = await moveUserInfo({ moveUid, moveOpenid })
-        if (res.code === 0) {
-          uni.showToast({ title: res.msg })
-        } else {
-          uni.showToast({ title: '迁移失败', icon: 'error' })
+      myRequest('/get-old-event', { openid: moveOpenid }).then(async res => {
+        const oldList = res.data.data.map(item => ({ ...item, uid: this.userInfo.uid }))
+        for (const eventItem of oldList) {
+          uni.showLoading({
+            title: `迁移：${eventItem.title}`,
+            mask: true
+          })
+          const res1 = await addCountdown(eventItem)
+          if (eventItem.isArchive) {
+            await archiveCountdown({ ...eventItem, id: res1.data.id, isArchive: true })
+          }
+          console.log(1, res1)
+          const res2 = await myRequest('/delete-old-event', { _id: eventItem.oldId })
+          console.log(2, res2)
         }
-        await getUserInfo()
         uni.hideLoading()
-      } catch (err) {
-        console.log(err)
-        uni.showToast({ title: '迁移失败', icon: 'error' })
-        uni.hideLoading()
-      }
+        uni.showToast({
+          title: '迁移成功，请刷新页面',
+          icon: 'success'
+        })
+      })
     },
     getPageListDefault () {
       const item = {
@@ -292,19 +298,22 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.container{
+.container {
   min-height: 100vh;
   background: #f1f2f3;
   padding-bottom: 200rpx;
 }
-.msg-tips-box{
+
+.msg-tips-box {
   z-index: 2;
   position: fixed;
 }
-.countdown-box{
+
+.countdown-box {
   padding-bottom: 20rpx;
 }
-.slide-container{
+
+.slide-container {
   top: 0;
   left: 0;
   right: 0;
@@ -312,7 +321,8 @@ export default {
   position: sticky;
   z-index: 9;
 }
-.tabbar-container{
+
+.tabbar-container {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -320,14 +330,17 @@ export default {
   transition: all 0.3s ease-in-out;
   z-index: 9;
 }
-.event-container{
+
+.event-container {
   padding: 20rpx;
   transition: all 0.3s ease-in-out;
 }
-.footer-text{
+
+.footer-text {
   text-align: center;
 }
-.loading-box{
+
+.loading-box {
   position: fixed;
   height: calc(100% - 60px);
   left: 0;
