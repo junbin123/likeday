@@ -83,10 +83,6 @@ export default {
           urls: ['https://img-blog.csdnimg.cn/4a814dbd7caa497dae5c165cf89e0cda.png']
         })
       }
-      if (label === 'moment') {
-        const url = '/pages/other/poster'
-        uni.navigateTo({ url })
-      }
       this.isShow = false
       console.log('handleClick')
     }

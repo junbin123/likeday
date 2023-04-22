@@ -61,12 +61,6 @@ module.exports = {
       }
     },
     {
-      path: 'pages/other/poster',
-      style: {
-        navigationBarTitleText: '分享'
-      }
-    },
-    {
       path: 'pages/other/about',
       style: {
         navigationBarTitleText: '关于开发者'

@@ -10,8 +10,8 @@
     "statusBar.background": "#123456",
     "activityBarBadge.foreground": "#fff",
     "activityBarBadge.background": "#152B4E",
-    "tab.activeBackground": "#512F2C",
+    "tab.activeBackground": "#512F2C"
   },
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "zenMode.hideStatusBar": false
 }

@@ -1,4 +1,4 @@
-const { original } = JSON.parse(process.env.npm_config_argv)
-if (original[2]) {
-  process.env.VUE_APP_ENV = original[2].slice(1)
+process.env.VUE_APP_ENV = 'prod'
+module.exports = {
+  lintOnSave: false //关闭eslint检查
 }

@@ -103,6 +103,9 @@ npm run build -prod
 
 <img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9fc5ajslyj30u0136aca.jpg" width="300"/>
 
+## 记录
+使用 pnpm 
+pnpm run dev:prod
 
 
 
