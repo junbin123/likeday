@@ -78,7 +78,6 @@ export const formatCountdown = (item) => {
   const dayTimes = target.diff(now, 'day')
   return {
     ...item,
-    id: item._id,
     targetDate: newTargetDate,
     dayTimes // 天数,负数已过去 正数在未来
   }
@@ -88,16 +87,12 @@ export const formatCountdown = (item) => {
  * 获取倒数日事件
  */
 export const getCountdownList = async (params) => {
-  let start = new Date().getTime()
-  const res = await request('/countdown', params)
-  console.log('请求耗时：', new Date().getTime() - start)
+  const res = await request('/countdown/get', params)
   const { data, total } = res.data
-  start = new Date().getTime()
   const resData = {
     data: data?.map(item => formatCountdown(item)),
     total
   }
-  console.log('处理耗时：', new Date().getTime() - start)
   return resData
 }
 
@@ -139,7 +134,7 @@ export const archiveCountdown = async ({ id, ...data }) => {
  * 获取归档倒数日列表
  */
 export const getArchiveCountdown = async (params) => {
-  const res = await request('/countdown/archive/list', params)
+  const res = await request('/countdown/getArchive', params)
   const { data, total } = res.data
   return {
     data: data?.map(item => formatCountdown(item)),
@@ -147,7 +142,7 @@ export const getArchiveCountdown = async (params) => {
   }
 }
 
-export const getCountdownQrcode = async (data) => {
-  const res = await request('/countdown/getqrcode', data)
-  return res.data
-}
+// export const getCountdownQrcode = async (data) => {
+//   const res = await request('/countdown/getqrcode', data)
+//   return res.data
+// }

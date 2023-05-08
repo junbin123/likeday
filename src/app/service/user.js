@@ -1,12 +1,11 @@
 import request from '@/app/request'
 import store from '@/store'
 
-export const getUserInfo = async () => {
-  const res = await request('/user/get', {})
-  const userInfo = res.data.data
-  console.log('getUserInfo----', userInfo)
-  store.dispatch('app/updateUserInfo', userInfo)
-}
+// export const getUserInfo = async () => {
+//   const res = await request('/user/get', {})
+//   const userInfo = res.data.data
+//   store.dispatch('app/updateUserInfo', userInfo)
+// }
 
 // 更新用户信息
 export const updateUserInfo = async () => {

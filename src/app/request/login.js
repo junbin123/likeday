@@ -7,11 +7,11 @@ const login = async () => {
       success: res => {
         const code = res.code
         uni.request({
-          url: baseUrl + '/login',
+          url: `${baseUrl}/login`,
           data: { code },
           method: 'GET',
           success: resData => {
-            const userInfo = resData.data.userInfo
+            const userInfo = resData.data.data
             store.dispatch('app/updateUserInfo', userInfo)
             resolve(userInfo)
           },
