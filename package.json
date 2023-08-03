@@ -27,7 +27,7 @@
     "core-js": "^3.8.3",
     "dayjs": "^1.10.6",
     "flyio": "^0.6.2",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "regenerator-runtime": "^0.12.1",
     "vue": ">= 2.6.14 < 2.7",
     "vue-class-component": "^7.2.6",
